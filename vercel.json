@@ -2,22 +2,23 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.html",
-      "use": "@vercel/static"
+      "src": "main.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb",
+        "includeFiles": [
+          "Mental_Health_Model.pkl",
+          "index.html",
+          "style.css",
+          "script.js"
+        ]
+      }
     }
   ],
   "routes": [
     {
-      "src": "/style.css",
-      "dest": "/style.css"
-    },
-    {
-      "src": "/script.js",
-      "dest": "/script.js"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "main.py"
     }
   ]
 }

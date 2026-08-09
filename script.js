@@ -1,7 +1,13 @@
 (() => {
   "use strict";
 
-  const API_BASE = "https://mansik-santulan-score.onrender.com";
+  // Localhost → dev FastAPI on port 2200
+  // Vercel (or any other host) → same-origin, FastAPI serves everything
+  const API_BASE =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+      ? "http://127.0.0.1:2200"
+      : "";
 
   const form = document.getElementById("predict-form");
   const submitBtn = document.getElementById("submit-btn");
