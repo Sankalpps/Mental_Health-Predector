@@ -537,3 +537,157 @@ input:invalid:not(:placeholder-shown):not(:focus) {
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
+
+/* =========================================================
+   SCORE BAND CATEGORIES
+   ========================================================= */
+.score-band--strained { color: var(--coral) !important; }
+.score-band--balanced { color: var(--amber) !important; }
+.score-band--strong   { color: var(--sage)  !important; }
+
+/* =========================================================
+   RECOMMENDATIONS PANEL — SECTION HEADINGS
+   ========================================================= */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.risk-heading     { color: #b94040; }
+.positives-heading{ color: #3a7a5a; }
+.recs-heading     { color: var(--pine); }
+
+.section-icon { font-size: 15px; }
+
+/* =========================================================
+   RISK FACTORS
+   ========================================================= */
+.risk-section,
+.positives-section,
+.recs-section {
+  margin-top: 20px;
+  animation: fadeUp 0.35s ease both;
+}
+
+.risk-list,
+.positives-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.risk-item,
+.positive-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(217, 83, 79, 0.06);
+  border: 1px solid rgba(217, 83, 79, 0.12);
+}
+
+.positive-item {
+  background: rgba(76, 154, 120, 0.07);
+  border-color: rgba(76, 154, 120, 0.15);
+}
+
+.risk-dot,
+.positive-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 4px;
+  background: var(--coral);
+}
+
+.positive-dot { background: var(--sage); }
+
+/* =========================================================
+   RECOMMENDATION CARDS
+   ========================================================= */
+.recs-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rec-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rec-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.rec-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--pine-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.rec-body { flex: 1; min-width: 0; }
+
+.rec-title {
+  margin: 0 0 4px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--pine-deep);
+  line-height: 1.3;
+}
+
+.rec-detail {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* =========================================================
+   FADE-UP KEYFRAME
+   ========================================================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* =========================================================
+   RESPONSIVE — recommendations
+   ========================================================= */
+@media (max-width: 560px) {
+  .rec-card  { flex-direction: row; }
+  .rec-icon  { width: 30px; height: 30px; font-size: 15px; }
+}
+

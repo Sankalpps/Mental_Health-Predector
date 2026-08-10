@@ -4,11 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mental Health Signal — Student Wellness Analytics</title>
+<meta name="description" content="Predict your mental health score and receive personalized, actionable recommendations based on your daily habits, screen time, sleep, and stress levels." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css" />
-</head>S
+</head>
 <body>
 
 <div class="noise-overlay" aria-hidden="true"></div>
@@ -167,7 +168,7 @@
 
       <div class="form-footer">
         <button type="submit" class="submit-btn" id="submit-btn">
-          <span class="btn-label">Read my signal</span>
+          <span class="btn-label">Analyze my signal</span>
           <span class="btn-spinner" aria-hidden="true"></span>
         </button>
       </div>
@@ -184,21 +185,22 @@
           <g class="gauge-ticks"></g>
         </svg>
         <p class="idle-label">Your score will appear here</p>
-        <p class="idle-copy">Fill in the form and submit to generate a predicted mental health score from 0–10.</p>
+        <p class="idle-copy">Fill in the form and submit to generate a predicted mental health score from 0–10, along with personalized recommendations.</p>
       </div>
 
       <div class="state state-loading" id="state-loading" hidden>
         <div class="pulse-ring"></div>
-        <p class="loading-label">Reading the signal…</p>
-        <p class="loading-copy">Running your habits through the model.</p>
+        <p class="loading-label">Analyzing your signal…</p>
+        <p class="loading-copy">Running your habits through the model and building your personalized report.</p>
       </div>
 
       <div class="state state-result" id="state-result" hidden>
+        <!-- Score gauge -->
         <svg class="gauge gauge-result" viewBox="0 0 240 160" aria-hidden="true">
           <defs>
             <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#D9534F"/>
-              <stop offset="45%" stop-color="#E3B341"/>
+              <stop offset="0%"   stop-color="#D9534F"/>
+              <stop offset="45%"  stop-color="#E3B341"/>
               <stop offset="100%" stop-color="#4C9A78"/>
             </linearGradient>
           </defs>
@@ -213,6 +215,31 @@
         </div>
         <p class="score-band" id="score-band">—</p>
         <p class="score-context" id="score-context"></p>
+
+        <!-- Risk factors -->
+        <div class="risk-section" id="risk-section" hidden>
+          <h3 class="section-heading risk-heading">
+            <span class="section-icon">⚠️</span> Key Risk Factors
+          </h3>
+          <ul class="risk-list" id="risk-list"></ul>
+        </div>
+
+        <!-- Positives -->
+        <div class="positives-section" id="positives-section" hidden>
+          <h3 class="section-heading positives-heading">
+            <span class="section-icon">✅</span> What's Working Well
+          </h3>
+          <ul class="positives-list" id="positives-list"></ul>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="recs-section" id="recs-section" hidden>
+          <h3 class="section-heading recs-heading">
+            <span class="section-icon">💡</span> Personalized Recommendations
+          </h3>
+          <div class="recs-grid" id="recs-grid"></div>
+        </div>
+
         <button type="button" class="reset-btn" id="reset-btn">Run another read</button>
       </div>
 
