@@ -63,7 +63,7 @@ STRESS_MAP      = {"Low": 0, "Medium": 1, "High": 2, "Very High": 3}
 
 rows = []
 for _ in range(N):
-    age             = int(np.random.normal(21, 4).clip(10, 40))
+    age             = int(np.clip(np.random.normal(21, 4), 10, 40))
     gender          = random.choice(["Male", "Female"])
     country         = random.choice(COUNTRIES)
     academic_level  = random.choice(ACADEMIC_LEVELS)
@@ -76,20 +76,20 @@ for _ in range(N):
 
     # Sleep: high-stress → less sleep
     sleep_base      = 8.0 - stress_idx * 0.7
-    sleep_hours     = float(np.random.normal(sleep_base, 0.8).clip(3.0, 10.0))
+    sleep_hours     = float(np.clip(np.random.normal(sleep_base, 0.8), 3.0, 10.0))
 
     # Physical activity: stressed people exercise less
     activity_base   = 1.5 - stress_idx * 0.2
-    physical_activity = float(np.random.normal(activity_base, 0.5).clip(0.0, 5.0))
+    physical_activity = float(np.clip(np.random.normal(activity_base, 0.5), 0.0, 5.0))
 
     # Study hours
-    study_hours     = float(np.random.normal(4.5, 1.5).clip(0.0, 12.0))
+    study_hours     = float(np.clip(np.random.normal(4.5, 1.5), 0.0, 12.0))
 
     # Screen time: correlated with lower mental health
-    screen_time     = float(np.random.normal(4.0 + stress_idx * 0.5, 1.5).clip(0.5, 14.0))
+    screen_time     = float(np.clip(np.random.normal(4.0 + stress_idx * 0.5, 1.5), 0.5, 14.0))
 
     # Daily unlocks: correlated with screen time
-    daily_unlocks   = int(np.random.normal(screen_time * 12, 10).clip(5, 200))
+    daily_unlocks   = int(np.clip(np.random.normal(screen_time * 12, 10), 5, 200))
 
     # ── Score calculation (domain-grounded formula) ──────────────────────────
     score = 5.5  # baseline
@@ -183,7 +183,7 @@ preprocessor = ColumnTransformer(transformers=[
     ("ordinal", OrdinalEncoder(categories=stress_order,
                                handle_unknown="use_encoded_value",
                                unknown_value=-1),                           ordinal_features),
-    ("nominal", OneHotEncoder(handle_unknown="ignore", sparse_output=False), nominal_features),
+    ("nominal", OneHotEncoder(handle_unknown="ignore"), nominal_features),
 ], remainder="drop")
 
 # ────────────────────────────────────────────────────────────────────────────
